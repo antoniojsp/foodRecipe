@@ -21,6 +21,8 @@ export default function GlobalState({ children }) {
             if (data?.data?.recipes) {
                 setRecipeList(data);
                 setRecipeDetailsData(data?.data)
+                console.log(recipeList)
+                console.log(recipeDetailsData)
             }
 
         } catch (error) {
@@ -32,12 +34,12 @@ export default function GlobalState({ children }) {
     }
 
     function handleToFavorite(recipe) {
-        console.log(favorites)
         if (favorites.find(x => x.id === recipe.id)) {
             setFavorites(fav => fav.filter(prev => prev.id !== recipe.id))
         } else {
             setFavorites(prev => [...prev, recipe])
         }
+        console.log(favorites)
     }
 
     return <GlobalContext.Provider value={{
