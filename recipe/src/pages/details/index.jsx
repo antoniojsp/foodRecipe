@@ -1,12 +1,23 @@
 import { useParams } from "react-router-dom";
 import { GlobalContext } from "../../context";
-import { useContext, useEffect } from "react";
-
+import { useContext, useEffect, useState } from "react";
 
 export default function Details() {
   const { id } = useParams();
   const { recipeDetailsData, setRecipeDetailsData, handleToFavorite, favorites } = useContext(GlobalContext);
-  console.log(favorites)
+  const [btnName, setBtnName] = useState("Save")
+
+
+  useEffect(()=>{
+    if(favorites.find(prev => prev.id === id)){
+      setBtnName("Delete")
+    }else{
+      setBtnName("Save")
+    }
+  }, [favorites])
+
+
+  // console.log(recipeDetailsData, favorites)
   useEffect(() => {
     async function fetchRecipeDetails() {
       try {
@@ -21,8 +32,7 @@ export default function Details() {
       }
     }
     fetchRecipeDetails();
-  }, [])
-
+  }, [id])
 
   return (
     <div className="container mx-auto py-10 grid grid-col-1 lg:grid-cols-2 gap-10">
@@ -42,13 +52,13 @@ export default function Details() {
         </h3>
 
         <div>
-          <button   
-            onClick={()=>{handleToFavorite(recipeDetailsData?.recipe)
-              console.log(recipeDetailsData?.recipe)
+          <button
+            onClick={() => {
+              handleToFavorite(recipeDetailsData?.recipe)
             }}
             className="p-3 px-8 rounded-lg text-sm uppercase font-medium tracking-wider mt-3 inline-block shadow-md bg-black text-white">
             {
-              favorites
+              btnName
             }
           </button>
         </div>

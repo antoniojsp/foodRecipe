@@ -10,7 +10,6 @@ export default function GlobalState({ children }) {
     const [recipeDetailsData, setRecipeDetailsData] = useState(null);
     const [favorites, setFavorites] = useState([]);
 
-
     async function handleSubmit(event) {
         event.preventDefault();
         setLoading(true);
@@ -19,10 +18,9 @@ export default function GlobalState({ children }) {
                 `https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchParam}`
             );
             const data = await response.json();
-            console.log(data)
             if (data?.data?.recipes) {
                 setRecipeList(data);
-                setRecipeDetailsData(data?.data) 
+                setRecipeDetailsData(data?.data)
             }
 
         } catch (error) {
@@ -34,19 +32,24 @@ export default function GlobalState({ children }) {
     }
 
     function handleToFavorite(recipe) {
-        setFavorites(prev => [...prev, recipe])
+        console.log(favorites)
+        if (favorites.find(x => x.id === recipe.id)) {
+            setFavorites(fav => fav.filter(prev => prev.id !== recipe.id))
+        } else {
+            setFavorites(prev => [...prev, recipe])
+        }
     }
 
     return <GlobalContext.Provider value={{
         searchParam,
         setSearchParam,
-        handleSubmit,
-        recipeList,
-        loading, 
+        favorites,
+        handleToFavorite,
         recipeDetailsData,
         setRecipeDetailsData,
-        handleToFavorite,
-        favorites
+        loading,
+        recipeList,
+        handleSubmit,
     }}>
         {children}
     </GlobalContext.Provider>

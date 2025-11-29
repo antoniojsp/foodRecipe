@@ -3,9 +3,7 @@ import { GlobalContext } from "../../context";
 import RecipeList from "../../components/recipe-list";
 
 export default function Favorite() {
-
   const { favorites } = useContext(GlobalContext);
-  console.log(favorites)
   return (
     <div className='py-8 container mx-auto flex flex-wrap justify-center gap-10'>
       {
