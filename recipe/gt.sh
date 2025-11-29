@@ -1,4 +1,3 @@
-#!/bin/bash
 
 message=$1   # grabs first argument
 
