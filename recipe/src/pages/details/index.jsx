@@ -5,8 +5,8 @@ import { useContext, useEffect } from "react";
 
 export default function Details() {
   const { id } = useParams();
-  const { recipeDetailsData, setRecipeDetailsData } = useContext(GlobalContext);
-
+  const { recipeDetailsData, setRecipeDetailsData, handleToFavorite, favorites } = useContext(GlobalContext);
+  console.log(favorites)
   useEffect(() => {
     async function fetchRecipeDetails() {
       try {
@@ -21,8 +21,9 @@ export default function Details() {
       }
     }
     fetchRecipeDetails();
-  }, [id])
-  console.log(recipeDetailsData);
+  }, [])
+
+
   return (
     <div className="container mx-auto py-10 grid grid-col-1 lg:grid-cols-2 gap-10">
       <div className="row-start-2 lg:row-start-auto">
@@ -33,19 +34,28 @@ export default function Details() {
           />
         </div>
       </div>
+
       <div className="flex flex-col gap-3">
         <span className="text-sm text-cyan-700 font-medium">{recipeDetailsData?.recipe?.publisher}</span>
         <h3 className="font-bold text-2xl truncate text-black">
           {recipeDetailsData?.recipe?.title}
         </h3>
+
         <div>
-          <button className="p-3 px-8 rounded-lg text-sm uppercase font-medium tracking-wider mt-3 inline-block shadow-md bg-black text-white">
-            Save as favorite
+          <button   
+            onClick={()=>{handleToFavorite(recipeDetailsData?.recipe)
+              console.log(recipeDetailsData?.recipe)
+            }}
+            className="p-3 px-8 rounded-lg text-sm uppercase font-medium tracking-wider mt-3 inline-block shadow-md bg-black text-white">
+            {
+              favorites
+            }
           </button>
         </div>
+
         <div>
           <span className="text-2xl font-semibold text-black">Ingredients</span>
-          <ul className="flex flex-col gap-3">
+          <ul className="flex flex-col gap-3 list-disc ml-6">
             {recipeDetailsData?.recipe?.ingredients.map((ingredient, index) => {
               return (
                 <li key={index}>
@@ -56,6 +66,7 @@ export default function Details() {
             })}
           </ul>
         </div>
+
       </div>
     </div>
   );
