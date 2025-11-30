@@ -5,7 +5,7 @@ import { GlobalContext } from '../../context';
 
 
 export default function RecipeList({ recipe }) {
-    const { favorites, handleToFavorite, recipeDetailsList } = useContext(GlobalContext);
+    const { favorites, handleToFavorite } = useContext(GlobalContext);
     const isFavorite = favorites.some(fav => fav.id === recipe?.id);
 
     return <div className="flex flex-col w-80 overflow-hidden p-5 bg-white/75 shadow-xl gap-5 border-2 rounded-2xl border-white">
