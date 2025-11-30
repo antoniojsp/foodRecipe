@@ -4,7 +4,6 @@ import RecipeList from '../../components/recipe-list';
 export default function Home() {
   const { recipeList,
     loading } = useContext(GlobalContext);
-
   if (loading) {
     return <div> Loading... </div>
   }

@@ -9,11 +9,7 @@ export default function Details() {
 
 
   useEffect(()=>{
-    if(favorites.find(prev => prev.id === id)){
-      setBtnName("Delete")
-    }else{
-      setBtnName("Save")
-    }
+    setBtnName(() => favorites.find(fav => fav.id === id)?"Delete":"Save")
   }, [favorites])
 
 

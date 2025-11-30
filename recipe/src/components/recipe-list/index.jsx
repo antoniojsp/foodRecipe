@@ -10,7 +10,9 @@ export default function RecipeList({ recipe }) {
             <h2 className="font-bold text-2xl truncate text-black">{recipe?.title}</h2>
             <Link
                 to={`/recipe-item/${recipe?.id}`}
-                className="text-sm p-3 px-8 rounded-lg uppercase font-medium tracking-wider inline-block shadow-md bg-black text-white mt-5">Recipe Details</Link>
+                className="text-sm p-3 w-max px-8 rounded-lg uppercase font-medium tracking-wider block shadow-md bg-black text-white mt-5 mx-auto text-center">
+                Recipe Details
+            </Link>
         </div>
     </div>
 }   

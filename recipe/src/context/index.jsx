@@ -14,10 +14,10 @@ export default function GlobalState({ children }) {
     const navigate = useNavigate();
 
     async function handleSubmit(event) {
-        if (event){
+        if (event) {
             event.preventDefault();
         }
-        if(!searchParam.trim()){
+        if (!searchParam.trim()) {
             return;
         }
 
@@ -42,10 +42,6 @@ export default function GlobalState({ children }) {
         }
     }
 
-    // useEffect(() =>{
-    //     handleSubmit();
-    // }, [searchParam])
-
     function handleToFavorite(recipe) {
         if (favorites.find(x => x.id === recipe.id)) {
             setFavorites(fav => fav.filter(prev => prev.id !== recipe.id))
@@ -54,9 +50,11 @@ export default function GlobalState({ children }) {
         }
     }
 
-    function resetSearch(){
-        console.log("reset")
+    function resetSearch() {
+        setLoading(false);
         setSearchParam("");
+        setRecipeList(null);
+        navigate("/");
     }
 
     return <GlobalContext.Provider value={{
