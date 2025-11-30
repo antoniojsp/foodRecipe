@@ -3,7 +3,7 @@ import { GlobalContext } from "../../context";
 import { useContext, useEffect, useState } from "react";
 
 export default function Details() {
-  const { id } = useParams();
+  const { id } = useParams(); // get id parameter from url
   const { recipeDetailsData, setRecipeDetailsData, handleToFavorite, favorites } = useContext(GlobalContext);
   const [btnName, setBtnName] = useState("Save")
 

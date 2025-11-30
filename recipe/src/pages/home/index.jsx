@@ -5,7 +5,7 @@ export default function Home() {
   const { recipeList,
     loading } = useContext(GlobalContext);
 
-  if (loading) {
+  if (loading) {// show while loading the info
     return <div> Loading... </div>
   }
 
