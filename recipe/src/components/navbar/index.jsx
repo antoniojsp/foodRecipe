@@ -15,7 +15,8 @@ export default function Navbar() {
         <h2 className="text-2xl font-semibold">
             <NavLink
                 to={"/"}
-                onClick={() => resetSearch()} >
+                onClick={() => resetSearch()}
+            >
                 FoodRecipe - Home
             </NavLink>
         </h2>
@@ -26,7 +27,7 @@ export default function Navbar() {
                 name="search"
                 value={searchParam}
                 onChange={x => setSearchParam(x.target.value)}
-                placeholder="Enter Items..."
+                placeholder="Enter Items and press 'Enter'"
                 className="bg-white/75 p-3 px-8 rounded-full outline-none 
                 lg:w-96 shadow-lg shadow-red-100 focus:shadow-red-200"
             />
@@ -36,7 +37,7 @@ export default function Navbar() {
             {recipeList && <li>
                 <NavLink
                     to={"/"}
-                    className="text-black hover:text-gray-700 duration-300">
+                    className="text-white hover:text-red-700 duration-300 px-6 py-2 text-center inline-block rounded-lg bg-black mt-3">
                     Results
                 </NavLink>
             </li>
@@ -45,7 +46,7 @@ export default function Navbar() {
             <li>
                 <NavLink
                     to={"/favorites"}
-                    className="text-black hover:text-gray-700 duration-300">
+                    className="text-white hover:text-red-700 duration-300 px-6 py-2 text-center inline-block rounded-lg bg-black mt-3">
                     Favorite
                 </NavLink>
             </li>

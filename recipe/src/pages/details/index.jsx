@@ -7,13 +7,10 @@ export default function Details() {
   const { recipeDetailsData, setRecipeDetailsData, handleToFavorite, favorites } = useContext(GlobalContext);
   const [btnName, setBtnName] = useState("Save")
 
-
-  useEffect(()=>{
-    setBtnName(() => favorites.find(fav => fav.id === id)?"Delete":"Save")
+  useEffect(() => {
+    setBtnName(() => favorites.find(fav => fav.id === id) ? "Delete" : "Save") // if from object always a string (no conv)
   }, [favorites])
 
-
-  // console.log(recipeDetailsData, favorites)
   useEffect(() => {
     async function fetchRecipeDetails() {
       try {

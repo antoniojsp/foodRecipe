@@ -3,7 +3,8 @@ import { GlobalContext } from '../../context';
 import RecipeList from '../../components/recipe-list';
 export default function Home() {
   const { recipeList,
-    loading } = useContext(GlobalContext);
+          loading } = useContext(GlobalContext);
+          
   if (loading) {
     return <div> Loading... </div>
   }
@@ -19,7 +20,6 @@ export default function Home() {
           <p className='lg:text-4x1 text-x1 text-center text-black font-extrabold'>
             No recipes found. Try searching for something else!</p>)
       }
-
     </div>
   );
 }
