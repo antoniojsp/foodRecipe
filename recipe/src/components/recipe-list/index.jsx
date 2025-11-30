@@ -18,7 +18,7 @@ export default function RecipeList({ recipe }) {
             <div className="flex gap-4">
                 <Link
                     to={`/recipe-item/${recipe?.id}`}
-                    className="text-xs p-3 w-max px-8 rounded-lg uppercase font-medium 
+                    className="text-xs p-5 w-max px-0 rounded-lg uppercase font-medium 
                            tracking-wider block shadow-md bg-black text-white mt-5 mx-auto text-center"
                 >
                     Recipe Details
@@ -27,7 +27,7 @@ export default function RecipeList({ recipe }) {
                     onClick={() => {
                         handleToFavorite(recipe)
                     }}
-                    className="text-xs p-3 w-max px-8 rounded-lg uppercase font-medium 
+                    className="text-xs p-5 w-max px-8 rounded-lg uppercase font-medium 
                         tracking-wider block shadow-md bg-black text-white mt-5 mx-auto text-center"
                 >
                     {isFavorite ? "Remove from Favorites" : "Add to favorites"}

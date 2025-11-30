@@ -31,7 +31,6 @@ export default function GlobalState({ children }) {
                 setRecipeList(data);
                 setRecipeDetailsData(data?.data)
             }
-
         } catch (error) {
             console.error("Error fetching data:", error);
         } finally {
@@ -43,13 +42,9 @@ export default function GlobalState({ children }) {
     }
 
     function handleToFavorite(recipe) {
-        console.log(recipe)
-        console.log(favorites)
         if (favorites.find(x => x.id === recipe.id)) {
-            console.log("remove")
             setFavorites(fav => fav.filter(prev => prev.id !== recipe.id))
         } else {
-            console.log("add")
             setFavorites(prev => [...prev, recipe])
         }
     }

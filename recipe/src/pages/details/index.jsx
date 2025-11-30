@@ -8,7 +8,7 @@ export default function Details() {
   const [btnName, setBtnName] = useState("Save")
 
   useEffect(() => {
-    setBtnName(() => favorites.find(fav => fav.id === id) ? "Delete" : "Save") // if from object always a string (no conv)
+    setBtnName(() => favorites.find(fav => String(fav.id) === String(id)) ? "Delete" : "Save") // if from object always a string (no conv)
   }, [favorites])
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Details() {
       }
     }
     fetchRecipeDetails();
-  }, [id])
+  }, [id, btnName])
 
   return (
     <div className="container mx-auto py-10 grid grid-col-1 lg:grid-cols-2 gap-10">
