@@ -1,4 +1,5 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const GlobalContext = createContext(null);
 
@@ -10,8 +11,16 @@ export default function GlobalState({ children }) {
     const [recipeDetailsData, setRecipeDetailsData] = useState(null);
     const [favorites, setFavorites] = useState([]);
 
+    const navigate = useNavigate();
+
     async function handleSubmit(event) {
-        event.preventDefault();
+        if (event){
+            event.preventDefault();
+        }
+        if(!searchParam.trim()){
+            return;
+        }
+
         setLoading(true);
         try {
             const response = await fetch(
@@ -21,8 +30,6 @@ export default function GlobalState({ children }) {
             if (data?.data?.recipes) {
                 setRecipeList(data);
                 setRecipeDetailsData(data?.data)
-                console.log(recipeList)
-                console.log(recipeDetailsData)
             }
 
         } catch (error) {
@@ -30,8 +37,14 @@ export default function GlobalState({ children }) {
         } finally {
             setLoading(false);
             setSearchParam("");
+            navigate("/");
+
         }
     }
+
+    // useEffect(() =>{
+    //     handleSubmit();
+    // }, [searchParam])
 
     function handleToFavorite(recipe) {
         if (favorites.find(x => x.id === recipe.id)) {
@@ -39,7 +52,11 @@ export default function GlobalState({ children }) {
         } else {
             setFavorites(prev => [...prev, recipe])
         }
-        console.log(favorites)
+    }
+
+    function resetSearch(){
+        console.log("reset")
+        setSearchParam("");
     }
 
     return <GlobalContext.Provider value={{
@@ -52,6 +69,7 @@ export default function GlobalState({ children }) {
         loading,
         recipeList,
         handleSubmit,
+        resetSearch,
     }}>
         {children}
     </GlobalContext.Provider>
