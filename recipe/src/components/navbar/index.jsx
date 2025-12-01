@@ -29,7 +29,7 @@ export default function Navbar() {
                 onChange={x => setSearchParam(x.target.value)}
                 placeholder="Enter Items and press Enter"
                 className="bg-white/75 py-3 px-8 rounded-full outline-none 
-                lg:w-200 shadow-lg shadow-red-100 focus:shadow-red-200"
+                 shadow-lg shadow-red-100 focus:shadow-red-200"
             />
         </form>
 
@@ -37,7 +37,7 @@ export default function Navbar() {
             {recipeList && <li>
                 <NavLink
                     to={"/"}
-                    className="text-white hover:text-red-700 duration-300 px-6 py-2 text-center inline-block rounded-lg bg-black mt-3">
+                    className="text-white outline outline-2 hover:outline-red-600 duration-300 px-6 py-2 text-center inline-block rounded-lg bg-black mt-3">
                     Results
                 </NavLink>
             </li>
@@ -46,7 +46,7 @@ export default function Navbar() {
             <li>
                 <NavLink
                     to={"/favorites"}
-                    className="text-white hover:text-red-700 duration-300 px-6 py-2 text-center inline-block rounded-lg bg-black mt-3">
+                    className="text-white outline outline-2 hover:outline-red-600 duration-300 px-6 py-2 text-center inline-block rounded-lg bg-black mt-3">
                     Favorite
                 </NavLink>
             </li>

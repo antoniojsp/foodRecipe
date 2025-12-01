@@ -3,12 +3,12 @@ import { GlobalContext } from "../../context";
 import { useContext, useEffect, useState } from "react";
 
 export default function Details() {
-  const { id } = useParams(); // get id parameter from url
+  const { id } = useParams(); // get id parameter from 
   const { recipeDetailsData, setRecipeDetailsData, handleToFavorite, favorites } = useContext(GlobalContext);
-  const [btnName, setBtnName] = useState("Save")
+  const [isFavorite, setIsFavorite] = useState(false)
 
   useEffect(() => {
-    setBtnName(() => favorites.find(fav => String(fav.id) === String(id)) ? "Delete" : "Save") // if from object always a string (no conv)
+    setIsFavorite(() => favorites.find(fav => String(fav.id) === String(id))) // if from object always a string (no conv)
   }, [favorites])
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Details() {
       }
     }
     fetchRecipeDetails();
-  }, [id, btnName])
+  }, [id])
 
   return (
     <div className="container mx-auto py-10 grid grid-col-1 lg:grid-cols-2 gap-10">
@@ -49,9 +49,10 @@ export default function Details() {
             onClick={() => {
               handleToFavorite(recipeDetailsData?.recipe)
             }}
-            className="p-3 px-8 rounded-lg text-sm uppercase font-medium tracking-wider mt-3 inline-block shadow-md bg-black text-white">
+            className={`p-3 px-8 rounded-lg text-sm uppercase font-medium tracking-wider mt-3 inline-block shadow-md text-white
+                      ${isFavorite?"bg-red-500":"bg-black "}`}>
             {
-              btnName
+              isFavorite?"Delete":"Save"
             }
           </button>
         </div>

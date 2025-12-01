@@ -1,7 +1,7 @@
 
-message=$1   # grabs first argument
+message="$1"   # grabs first argument
 
 git add .
-git commit -m $message
+git commit -m "$message"
 git push
 
